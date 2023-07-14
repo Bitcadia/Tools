@@ -1,0 +1,5 @@
+zig 0.10.1
+bun 0.6.7
+make 4.4.1
+neovim stable
+nodejs 20.2.0
