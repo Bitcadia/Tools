@@ -1,8 +1,7 @@
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
   keys = {
-    { "s", "s", mode = "n", desc = "Substitute char" },
+    { "s", "s", mode = { "n", "v" }, desc = "Substitute char", remap = true },
     {
       ";",
       function()
