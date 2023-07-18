@@ -25,19 +25,15 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add ripgrep https://gitlab.com/wt0f/asdf-ripgrep.git
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
 asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-
-# Create symbolic link for .tool-versions file
-ln -sf "$(pwd)/.tool-versions" "$TOOLS_VERSIONS_FILE"
-echo ".tool-versions file linked to $TOOLS_VERSIONS_FILE."
+cp cc ~/.asdf/shims
 
 # Install versions in asdf global scope
-cd ~/
-asdf install
-asdf global make 4.4.1
-asdf global neovim stable
-asdf global nodejs 20.2.0
-asdf global ripgrep 13.0.0
-popd
-cp cc ~/.asdf/shims
-asdf install tmux 3.3
-asdf global tmux 3.3
+while read -r line; do
+	plugin=$(echo "$line" | awk '{print $1}')
+	version=$(echo "$line" | awk '{print $2}')
+	(
+		asdf install "$plugin" "$version"
+		asdf global "$plugin" "$version"
+	)
+	echo "Installed $plugin version $version in asdf global scope."
+done <"$TOOLS_VERSIONS_FILE"
