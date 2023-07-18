@@ -63,6 +63,10 @@ asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
 cp cc $ASDF_DIR/shims
 cp gcc $ASDF_DIR/shims
 
+if ! command -v unzip &>/dev/null; then
+	sudo apt-get update && sudo apt-get install -y unzip
+fi
+
 while read -r line; do
 	# Install versions in asdf global scope
 	plugin=$(echo "$line" | awk '{print $1}')
