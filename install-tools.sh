@@ -62,6 +62,7 @@ asdf plugin add ripgrep https://gitlab.com/wt0f/asdf-ripgrep.git
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
 asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
 cp cc $ASDF_DIR/shims
+cp gcc $ASDF_DIR/shims
 
 while read -r line; do
 	# Install versions in asdf global scope
