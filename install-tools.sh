@@ -45,6 +45,7 @@ else
 	echo "export XDG_CONFIG_HOME=\"$CONFIG_DIR\"" >>"$BASHRC_FILE"
 	echo "Added XDG_CONFIG_HOME to .bashrc: $CONFIG_DIR"
 fi
+mkdir -p $CONFIG_DIR
 echo '' >>$BASHRC_FILE
 source $BASHRC_FILE
 echo '# tmux' >>$BASHRC_FILE
@@ -75,5 +76,7 @@ done <"$TOOLS_VERSIONS_FILE"
 
 ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
 ln -s "$SCRIPT_DIR/tmux" "$CONFIG_DIR/tmux"
+
+echo "Linked nvim and tmux configs"
 
 source $BASHRC_FILE
