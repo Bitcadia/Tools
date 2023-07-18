@@ -60,8 +60,8 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add ripgrep https://gitlab.com/wt0f/asdf-ripgrep.git
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
 asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-ln -sf cc $ASDF_DIR/shims/cc
-ln -sf gcc $ASDF_DIR/shims/gcc
+ln -sf $SCRIPT_DIR/cc $ASDF_DIR/shims/cc
+ln -sf $SCRIPT_DIR/gcc $ASDF_DIR/shims/gcc
 
 if ! command -v unzip &>/dev/null; then
 	sudo apt-get update && sudo apt-get install -y unzip
