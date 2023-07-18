@@ -5,7 +5,6 @@ echo "Checking if asdf exists"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ASDF_DIR="$HOME/.asdf"
-TOOLS_VERSIONS_FILE="$HOME/.tool-versions"
 ASDF_VERSION="v0.11.3"
 BASHRC_FILE="$HOME/.bashrc"
 
@@ -73,7 +72,7 @@ while read -r line; do
 		asdf global "$plugin" "$version"
 	)
 	echo "Installed $plugin version $version in asdf global scope."
-done <"$TOOLS_VERSIONS_FILE"
+done <"$SCRIPT_DIR/.tool-versions"
 
 ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
 ln -s "$SCRIPT_DIR/tmux" "$CONFIG_DIR/tmux"
