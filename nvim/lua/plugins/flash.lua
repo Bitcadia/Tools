@@ -1,7 +1,11 @@
 return {
   "folke/flash.nvim",
   keys = {
-    { "s", "s", mode = { "n", "v" }, desc = "Substitute char", remap = true },
+    {
+      "s",
+      false,
+      mode = { "n", "o", "x" },
+    },
     {
       ";",
       function()

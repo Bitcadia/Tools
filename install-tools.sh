@@ -5,7 +5,7 @@ echo "Checking if asdf exists"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ASDF_DIR="$HOME/.asdf"
-ASDF_VERSION="v0.11.3"
+ASDF_VERSION="v0.12.0"
 BASHRC_FILE="$HOME/.bashrc"
 
 # Check if `asdf` is already installed
@@ -60,13 +60,15 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add ripgrep https://gitlab.com/wt0f/asdf-ripgrep.git
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
 asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-ln -sf $SCRIPT_DIR/cc $ASDF_DIR/shims/cc
-ln -sf $SCRIPT_DIR/gcc $ASDF_DIR/shims/gcc
+asdf plugin-add jq https://github.com/AZMCode/asdf-jq.git
+asdf plugin add lazygit https://github.com/nklmilojevic/asdf-lazygit.git
 
 if ! command -v unzip &>/dev/null; then
 	sudo apt-get update && sudo apt-get install -y unzip
 fi
 
+rm $ASDF_DIR/shims/gcc
+ln -sf $SCRIPT_DIR//ld $ASDF_DIR/shims/ld
 while read -r line; do
 	# Install versions in asdf global scope
 	plugin=$(echo "$line" | awk '{print $1}')
@@ -78,8 +80,9 @@ while read -r line; do
 	echo "Installed $plugin version $version in asdf global scope."
 done <"$SCRIPT_DIR/.tool-versions"
 
-ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
+ln -sf $SCRIPT_DIR/gcc $ASDF_DIR/shims/gcc
 ln -s "$SCRIPT_DIR/tmux" "$CONFIG_DIR/tmux"
+ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
 
 echo "Linked nvim and tmux configs"
 

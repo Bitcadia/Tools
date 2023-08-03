@@ -1,6 +1,8 @@
+jq 1.6
 zig 0.10.1
 make 4.4.1
 bun 0.6.7
 neovim stable
+lazygit 0.39.4
 nodejs 20.2.0
 tmux 3.3

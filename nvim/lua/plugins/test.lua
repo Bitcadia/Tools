@@ -24,9 +24,32 @@ return {
         desc = "Debug Last Test",
       },
       {
-        "<leader>tw",
-        "<cmd>lua require('neotest').run.run({ jestCommand = 'jest --watch ' })<cr>",
-        desc = "Run Watch",
+        "<F10>",
+        function()
+          require("dap").step_over()
+        end,
+        "Step over",
+      },
+      {
+        "<S-F9>",
+        function()
+          require("dap").step_out()
+        end,
+        "Step out",
+      },
+      {
+        "<F9>",
+        function()
+          require("dap").step_into()
+        end,
+        "Step into",
+      },
+      {
+        "<F8>",
+        function()
+          require("dap").continue()
+        end,
+        "Continue",
       },
     },
     opts = function(_, opts)
