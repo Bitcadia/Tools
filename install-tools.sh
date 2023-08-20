@@ -60,7 +60,7 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add ripgrep https://gitlab.com/wt0f/asdf-ripgrep.git
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
 asdf plugin add zig https://github.com/asdf-community/asdf-zig.git
-asdf plugin-add jq https://github.com/AZMCode/asdf-jq.git
+asdf plugin add jq https://github.com/AZMCode/asdf-jq.git
 asdf plugin add lazygit https://github.com/nklmilojevic/asdf-lazygit.git
 
 if ! command -v unzip &>/dev/null; then
@@ -81,8 +81,10 @@ while read -r line; do
 done <"$SCRIPT_DIR/.tool-versions"
 
 ln -sf $SCRIPT_DIR/gcc $ASDF_DIR/shims/gcc
+ln -sf $SCRIPT_DIR/evssh $ASDF_DIR/shims/evssh
 ln -s "$SCRIPT_DIR/tmux" "$CONFIG_DIR/tmux"
 ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
+ln -s "$SCRIPT_DIR/git" "$CONFIG_DIR/git"
 
 echo "Linked nvim and tmux configs"
 

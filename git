@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# asdf-plugin: zig 0.10.1
+exec git.exe "$@" # asdf_allow: ' asdf '
