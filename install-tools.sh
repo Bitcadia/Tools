@@ -13,7 +13,7 @@ if [ -d "$ASDF_DIR" ]; then
 	echo "asdf is already installed in $ASDF_DIR."
 else
 	# Clone asdf repository
-	git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch "$ASDF_VERSION"
+	git2 clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch "$ASDF_VERSION"
 	echo "asdf cloned successfully in $ASDF_DIR."
 fi
 
