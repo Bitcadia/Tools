@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
-# asdf-plugin: zig 0.10.1
-exec git.exe "$@" # asdf_allow: ' asdf '
+# check if the command "which asdf" returns no such file or directory
+output=$(pwd) # redirect stderr to stdout
+if [[ $output == "/mnt/c/Repos/"* ]]; then
+	exec git.exe "$@"
+else
+	exec git2 "$@"
+fi

@@ -1,6 +1,7 @@
 jq 1.6
 zig 0.10.1
-make 4.4.1
+ripgrep 13.0.0
+make 4.0
 bun 0.6.7
 neovim stable
 lazygit 0.39.4

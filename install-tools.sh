@@ -5,6 +5,7 @@ echo "Checking if asdf exists"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ASDF_DIR="$HOME/.asdf"
+USR_DIR="/usr/bin"
 ASDF_VERSION="v0.12.0"
 BASHRC_FILE="$HOME/.bashrc"
 
@@ -13,7 +14,7 @@ if [ -d "$ASDF_DIR" ]; then
 	echo "asdf is already installed in $ASDF_DIR."
 else
 	# Clone asdf repository
-	git2 clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch "$ASDF_VERSION"
+	git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR" --branch "$ASDF_VERSION"
 	echo "asdf cloned successfully in $ASDF_DIR."
 fi
 
@@ -68,7 +69,9 @@ if ! command -v unzip &>/dev/null; then
 fi
 
 rm $ASDF_DIR/shims/gcc
-ln -sf $SCRIPT_DIR//ld $ASDF_DIR/shims/ld
+sudo ln -sf $SCRIPT_DIR/gcc $USR_DIR/gcc
+sudo ln -sf $SCRIPT_DIR/cc $USR_DIR/cc
+sudo ln -sf $SCRIPT_DIR/ld $USR_DIR/shims/ld
 while read -r line; do
 	# Install versions in asdf global scope
 	plugin=$(echo "$line" | awk '{print $1}')
@@ -80,11 +83,10 @@ while read -r line; do
 	echo "Installed $plugin version $version in asdf global scope."
 done <"$SCRIPT_DIR/.tool-versions"
 
+ln -sf $SCRIPT_DIR/ld $ASDF_DIR/shims/ld
 ln -sf $SCRIPT_DIR/gcc $ASDF_DIR/shims/gcc
-ln -sf $SCRIPT_DIR/evssh $ASDF_DIR/shims/evssh
 ln -s "$SCRIPT_DIR/tmux" "$CONFIG_DIR/tmux"
 ln -s "$SCRIPT_DIR/nvim" "$CONFIG_DIR/nvim"
-ln -s "$SCRIPT_DIR/git" "$CONFIG_DIR/git"
 
 echo "Linked nvim and tmux configs"
 
