@@ -34,6 +34,8 @@ echo '# DEF from install-tools.sh' >>$BASHRC_FILE
 echo '# DO NOT ADD ANYTHIHNG INSIDE DEF AND ENDEF, IT WILL BE OVERWRITTEN' >>$BASHRC_FILE
 echo "# neovim" >>$BASHRC_FILE
 echo "alias vim='nvim'" >>$BASHRC_FILE
+echo "# pwsh" >>$BASHRC_FILE
+echo "alias pwsh='sudo \$(which powershell.exe)'" >>$BASHRC_FILE
 echo '# asdf' >>$BASHRC_FILE
 echo ". \"$ASDF_DIR/asdf.sh\"" >>$BASHRC_FILE
 echo ". \"$ASDF_DIR/completions/asdf.bash\"" >>$BASHRC_FILE
