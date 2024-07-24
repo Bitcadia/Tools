@@ -1,29 +1,35 @@
-irm get.scoop.sh -outfile 'install.ps1'
+Invoke-RestMethod get.scoop.sh -outfile 'install.ps1'
 .\install.ps1 -RunAsAdmin  "$HOME\.scoop"
 [System.Environment]::SetEnvironmentVariable("Path",$env:Path+";$HOME\.scoop\shims")
 $StartMarker = "# DEF from install-tools.sh"
 $EndMarker = "# ENDEF from install-tools.sh"
 
-if ((Get-Content $PROFILE) -contains $StartMarker -and (Get-Content $PROFILE) -contains $EndMarker) {
+if ((Get-Content $PROFILE) -contains $StartMarker -and (Get-Content $PROFILE) -contains $EndMarker)
+{
     $content = Get-Content $PROFILE 
     $inRange = $false
     $newContent = @()
 
-    foreach ($line in $content) {
-        if ($line -eq $EndMarker) {
+    foreach ($line in $content)
+    {
+        if ($line -eq $EndMarker)
+        {
             $inRange = $false
         }
-        if (-not $inRange) {
+        if (-not $inRange)
+        {
             $newContent += $line
         }
-        if ($line -eq $StartMarker) {
+        if ($line -eq $StartMarker)
+        {
             $inRange = $true
         }
     }
 
     Set-Content -Path $PROFILE -Value $newContent
     Write-Host "Lines between '$StartMarker' and '$EndMarker' have been removed from $PROFILE."
-} else {
+} else
+{
     Write-Host "Could not find the start and end markers in $PROFILE. No changes made."
 }
 Add-Content -Path $PROFILE -Value "$StartMarker
@@ -40,4 +46,6 @@ scoop install lazygit
 scoop install fd
 scoop install sed
 
+New-Item -ItemType SymbolicLink -Path $HOME/.scoop/shims/gcc.cmd -Target $PSScriptRoot/gcc.cmd
 New-Item -ItemType SymbolicLink -Path $HOME/AppData/Local/nvim -Target $PSScriptRoot/nvim
+
