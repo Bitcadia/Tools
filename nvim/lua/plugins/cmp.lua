@@ -1,7 +1,10 @@
 return {
   "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
   },
   opts = function(_, opts)
     local cmp = require("cmp")
@@ -25,4 +28,5 @@ return {
       end),
     })
   end,
+  cmp = require("cmp"),
 }

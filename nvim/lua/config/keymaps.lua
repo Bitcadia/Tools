@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 -- This file is automatically loaded by lazyvim.config.init
 -- map("n", "<A-k>", "<esc>k", { desc = "Move up" })
-local Util = require("lazyvim.util")
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
   ---@cast keys LazyKeysHandler
@@ -18,12 +17,6 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 map("n", "<A-j>", "<esc>j", { desc = "Move down" })
-map("i", "<C-c>", function()
-  require("cmp").complete()
-end, { desc = "Autocomplete" })
-map({ "v", "i" }, "<Tab>", function()
-  require("cmp").complete()
-end, { desc = "Autocomplete" })
 map("i", "<A-k>", "<esc>gk", { desc = "Move up" })
 map("i", "<A-j>", "<esc>gj", { desc = "Move down" })
 map("v", "<A-k>", "<esc>gk", { desc = "Move up" })
