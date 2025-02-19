@@ -29,6 +29,7 @@ if ((Get-Content $PROFILE) -contains $StartMarker -and (Get-Content $PROFILE) -c
 Add-Content -Path $PROFILE -Value "$StartMarker
 [System.Environment]::SetEnvironmentVariable(`"Path`",`$env:Path+`";`$HOME\.scoop\shims`")
 $EndMarker"
+.\install-fonts.ps1 -RunAsAdmin
 
 scoop bucket add extras
 scoop install zig
