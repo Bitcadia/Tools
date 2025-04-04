@@ -5,8 +5,8 @@ return {
       lua = { "stylua" },
       zig = { "zigfmt" },
       sh = { "shfmt" },
-      typescript = { "biome" },
-      typescriptreact = { "biome", "rustywind" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier", "rustywind" },
     },
   },
 }

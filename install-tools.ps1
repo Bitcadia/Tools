@@ -39,5 +39,9 @@ scoop install ripgrep
 scoop install make
 scoop install lazygit
 scoop install fd
+scoop install bun
+scoop install 7zip
 
 New-Item -ItemType SymbolicLink -Path $HOME/AppData/Local/nvim -Target $PSScriptRoot/nvim
+
+./replace_npm.ps1
